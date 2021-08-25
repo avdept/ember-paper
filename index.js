@@ -638,7 +638,7 @@ module.exports = {
 
     let baseName = name.replace(regex, '');
     baseName = baseName.replace(/(\/component|\/template\b)/, '');
-    baseName = baseName.substring(0, baseName.lastIndexOf('.')); 
+    baseName = baseName.substring(0, baseName.lastIndexOf('.'));
     let isWhitelisted = whitelist.indexOf(baseName) !== -1;
     let isBlacklisted = blacklist.indexOf(baseName) !== -1;
 
