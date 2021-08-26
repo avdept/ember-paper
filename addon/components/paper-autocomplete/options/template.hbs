@@ -1,13 +1,14 @@
 {{! template-lint-disable no-unnecessary-concat }}
+{{log "TEST COMPONENT"}}
 <VerticalCollection
-  @items={{@options}}
+  items={{@options}}
   @tagName="ul"
   class="md-autocomplete-suggestions"
   @containerSelector=".md-autocomplete-suggestions-container"
   @estimateHeight={{48}}
   @staticHeight={{true}}
   @bufferSize={{3}}
-  role="listbox"
+  role="listbox listbox2"
   aria-controls="ember-power-select-trigger-{{@select.uniqueId}}"
   {{did-insert this.addHandlers}}
   ...attributes

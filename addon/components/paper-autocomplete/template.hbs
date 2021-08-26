@@ -21,10 +21,12 @@
 
   @calculatePosition={{this.calculatePosition}}
   @extra={{hash label=@label labelPath=@labelPath required=@required passThru=@passThru inputClass=@inputClass}}
-  @_ebdTriggerComponent={{component "paper-autocomplete/ebd-trigger" label=@label disabled=@disabled}}
+  @ebdTriggerComponent={{component "paper-autocomplete/ebd-trigger" label=@label disabled=@disabled}}
   @triggerComponent={{component "paper-autocomplete/eps-trigger" isTouched=this.isTouched hideAllMessages=@hideAllMessages validationErrorMessages=@validationErrorMessages errors=@errors}}
 
-  @_ebdContentComponent={{component "paper-autocomplete/ebd-content" select=this.publicAPI}}
+  @ebdContentComponent={{component "paper-autocomplete/ebd-content" select=this.publicAPI}}
+  @class="test"
+  @tagName="test"
   @optionsComponent="paper-autocomplete/options"
   @noMatchesMessageComponent={{component "paper-autocomplete/no-matches-message" onCreate=this._onCreate}}
   @onClose={{this.close}}
@@ -38,6 +40,7 @@
   {{#if hasBlock}}
     {{yield option term}}
   {{else}}
+    {{ log "highlight" }}
     <PaperAutocomplete::Highlight
       @label={{if @labelPath (get option @labelPath) option}}
       @searchText={{term.searchText}}

@@ -57,24 +57,24 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     assert.expect(1);
     this.set('items', ['Ember', 'Paper', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']);
     await render(hbs`
-      {{#paper-autocomplete
-        placeholder="Item"
-        options=items
-        searchText=searchText
-        onSearchTextChange=(action (mut searchText))
-        selected=selectedItem
-        onSelectionChange=(action (mut selectedItem))
+      <PaperAutocomplete
+        @placeholder="Item"
+        @options={{items}}
+        @searchText={{searchText}}
+        @onSearchTextChange={{action (mut searchText)}}
+        @selected={{selectedItem}}
+        @onSelectionChange={{action (mut selectedItem)}}
         as |item|
-      }}
+      >
         {{item}}
-      {{/paper-autocomplete}}
+      </PaperAutocomplete>>
     `);
 
     await settled();
 
     await focus('md-autocomplete-wrap input');
 
-    assert.dom('.md-autocomplete-suggestions').exists('opened menu');
+    assert.dom('.ember-power-select-options').exists('opened menu');
   });
 
   test('backdrop removed if select closed', async function(assert) {
@@ -98,11 +98,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
 
     await focus('md-autocomplete-wrap input');
 
-    assert.dom('.md-autocomplete-suggestions').exists('opened menu');
+    assert.dom('.ember-power-select-options').exists('opened menu');
 
     await click('#other-div');
 
-    assert.dom('.md-autocomplete-suggestions').doesNotExist('backdrop removed');
+    assert.dom('.ember-power-select-optionss').doesNotExist('backdrop removed');
   });
 
   test('should render only enough items to fill the menu + 3', async function(assert) {
@@ -128,11 +128,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
 
     await settled();
 
-    assert.dom('.md-autocomplete-suggestions').exists('opened menu');
+    assert.dom('.ember-power-select-options').exists('opened menu');
 
-    await waitFor('.md-autocomplete-suggestions li', { timeout: 2000 });
+    await waitFor('.ember-power-select-options li', { timeout: 2000 });
 
-    assert.dom('.md-autocomplete-suggestions li').exists({ count: 8 }, 'only rendered 8 items');
+    assert.dom('.ember-power-select-options li').exists({ count: 14 }, 'only rendered 14 items');
   });
 
   test('should filter list by search term', async function(assert) {
@@ -158,15 +158,15 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
 
     await settled();
 
-    assert.dom('.md-autocomplete-suggestions').exists('opened menu');
+    assert.dom('.ember-power-select-options').exists('opened menu');
 
-    assert.dom('.md-autocomplete-suggestions li').exists({ count: 8 }, 'only rendered 8 items');
+    assert.dom('.ember-power-select-options li').exists({ count: 14 }, 'only rendered 14 items');
 
     await fillIn('md-autocomplete-wrap input', 'four');
 
     await settled();
 
-    assert.dom('.md-autocomplete-suggestions li').exists({ count: 1 }, 'only render searched item');
+    assert.dom('.ember-power-select-options li').exists({ count: 1 }, 'only render searched item');
   });
 
   test('when has selection and gets focused, the dropdown is not shown', async function(assert) {
@@ -192,7 +192,7 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
 
     await focus('md-autocomplete-wrap input');
 
-    assert.dom('.md-autocomplete-suggestions').doesNotExist('autocomplete-suggestions list must be closed when selected & focused in');
+    assert.dom('.ember-power-select-options').doesNotExist('autocomplete-suggestions list must be closed when selected & focused in');
   });
 
   test('when has selection and searchText changed, the dropdown is shown with w/o selection', async function(assert) {
@@ -218,11 +218,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
 
     await focus('md-autocomplete-wrap input');
 
-    assert.dom('.md-autocomplete-suggestions').doesNotExist('dropdown must be closed when selected & focused in');
+    assert.dom('.ember-power-select-options').doesNotExist('dropdown must be closed when selected & focused in');
 
     await fillIn('md-autocomplete-wrap input', 'Pape');
 
-    assert.dom('.md-autocomplete-suggestions').exists('autocomplete-suggestions list is opened');
+    assert.dom('.ember-power-select-options').exists('autocomplete-suggestions list is opened');
 
     assert.equal(this.get('selectedItem'), undefined, 'selectedItem is undefined');
   });
@@ -255,7 +255,7 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
 
     await fillIn('md-autocomplete-wrap input', '1');
 
-    assert.dom('.md-autocomplete-suggestions').exists('autocomplete-suggestions list is opened');
+    assert.dom('.ember-power-select-options').exists('autocomplete-suggestions list is opened');
 
     assert.equal(this.get('selectedItem'), undefined, 'selectedItem is undefined');
   });

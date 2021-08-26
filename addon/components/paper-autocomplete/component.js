@@ -10,7 +10,7 @@ import ValidationMixin from 'ember-paper/mixins/validation-mixin';
 import { assert } from '@ember/debug';
 
 import { indexOfOption } from 'ember-power-select/utils/group-utils';
-@tagName('')
+@tagName('md-autocomplete')
 @layout(template)
 class PaperAutocomplete extends Component.extend(ValidationMixin) {
 
@@ -74,6 +74,7 @@ class PaperAutocomplete extends Component.extend(ValidationMixin) {
     this.notifyValidityChange();
 
     if (this.onOpen) {
+
       return this.onOpen(...arguments);
     }
   }

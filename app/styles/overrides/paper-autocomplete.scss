@@ -3,3 +3,26 @@
   height: 225.5px;
   max-height: 225.5px;
 }
+
+.md-virtual-repeat-container {
+  ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    li {
+      font-size: 14px;
+      overflow: hidden;
+      padding: 0 15px;
+      line-height: 48px;
+      height: 48px;
+      transition: background .15s linear;
+      margin: 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      &:hover {
+        background: RGBA(var(--background-500),.18);
+      }
+    }
+  }
+}

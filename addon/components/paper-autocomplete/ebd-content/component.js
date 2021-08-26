@@ -1,16 +1,15 @@
 import Component from '@ember/component';
 import template from './template';
 
-import { tagName, layout } from '@ember-decorators/component';
+import { tagName, layout, action } from '@ember-decorators/component';
 
-@tagName('')
+@tagName('md-virtual-repeat-container')
 @layout(template)
 class PaperAutocompleteEbdContent extends Component {
-
   customStyles = {
     'overflow-y': 'auto',
     'overflow-x': 'hidden',
-    'height': 'auto!important'
+    height: 'auto!important',
   };
 
   shouldReposition(mutations) {

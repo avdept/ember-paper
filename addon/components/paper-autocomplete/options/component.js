@@ -1,13 +1,9 @@
 import PowerSelectOptions from 'ember-power-select/components/power-select/options';
 
-import template from './template';
+import template from 'ember-paper/components/paper-autocomplete/options/template';
 
 import { tagName, layout } from '@ember-decorators/component';
 
-@tagName('')
+@tagName('test')
 @layout(template)
-class PaperAutocompleteOptions extends PowerSelectOptions {
-
-}
-
-export default PaperAutocompleteOptions;
+export default class PaperAutocompleteOptions extends PowerSelectOptions {}
